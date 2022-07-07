@@ -1,3 +1,68 @@
+// const choices = ['rock', 'paper', 'scissors']
+// const computerTurn = computerChoice()
+// let newLine = '\r\n'
+// function computerChoice(){
+//     return choices[Math.floor(Math.random() * choices.length)]
+// }
+
+const selectionButtons = document.querySelectorAll('[data-selection')
+
+selectionButtons.forEach(selectedButton => {
+    selectedButton.addEventListener('click', e => {
+        const selectionName = selectedButton.dataset.selection
+        makeSelection(selectionName)
+    })
+})
+// in the days before datasets, developers would set all kinds of attributes 
+// on html elements to add extra information to the element. 
+// But it was so random and it was hard to maintain, so datasets were introduced. 
+// Basically, if you want to add a custom attribute that doesn't exist, 
+// you write data- followed by whatever you want to call it. 
+// Then in js you can access it with htmlElement.dataset.nameYouGaveIt.
+
+function makeSelection(selection){
+console.log(selection)
+}
+
+/*
+function chooseRock(){
+    let messageRock = ('Player shoots rock!');
+
+    //messageRock += newLine;
+    //messageRock += ('Computer shoots ' + computerTurn + '!')
+    let (choicesHeadline.textContent) = messageRock
+    return messageRock
+}
+const btnRock = document.querySelector('#btnRock');
+btnRock.addEventListener('click', chooseRock);
+
+
+function alertPaper(){
+    let messagePaper = ('Player shoots paper!');
+    messagePaper += newLine;
+    messagePaper += ('Computer shoots ' + computerTurn + '!')
+    alert(messagePaper) //function connected to paper button click
+}
+const btnPaper = document.querySelector('#btnPaper');
+btnPaper.addEventListener('click', alertPaper);
+
+
+function alertScissors(){
+    let messageScissors = ('Player shoots scissors!');
+    messageScissors += newLine;
+    messageScissors += ('Computer shoots ' + computerTurn + '!')
+    alert(messageScissors) //function connected to scissors button click
+}
+const btnScissors = document.querySelector('#btnScissors');
+btnScissors.addEventListener('click', alertScissors);
+*/
+
+
+
+
+
+
+/*
 const choices = ['rock', 'paper', 'scissors'];
 const winners = [];
 
@@ -78,3 +143,4 @@ function logRound(playerChoice, computerChoice, winner, round) {
     console.log(winner, 'round');
     console.log('---------------------------------------------')
 }
+*/
