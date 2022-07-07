@@ -1,16 +1,27 @@
-// const choices = ['rock', 'paper', 'scissors']
-// const computerTurn = computerChoice()
-// let newLine = '\r\n'
-// function computerChoice(){
-//     return choices[Math.floor(Math.random() * choices.length)]
-// }
-
 const selectionButtons = document.querySelectorAll('[data-selection')
+const SELECTED = [
+    {
+        name: 'rock',
+        text: 'ROCK!',
+        beats: 'scissors'
+    },
+    {
+        name: 'paper',
+        text: 'PAPER!',
+        beats: 'rock'
+    },
+    {
+        name: 'scissors',
+        text: 'SCISSORS!',
+        beats: 'paper'
+    },
+]
 
 selectionButtons.forEach(selectedButton => {
     selectedButton.addEventListener('click', e => {
         const selectionName = selectedButton.dataset.selection
-        makeSelection(selectionName)
+        const selection = SELECTED.find(selection => selection.name === selectionName)
+        makeSelection(selection)
     })
 })
 // in the days before datasets, developers would set all kinds of attributes 
@@ -21,10 +32,42 @@ selectionButtons.forEach(selectedButton => {
 // Then in js you can access it with htmlElement.dataset.nameYouGaveIt.
 
 function makeSelection(selection){
-console.log(selection)
+    const computerSelection = randomSelection()
+    const youWin = theWinner(selection, computerSelection)
+    const computerWin = theWinner(computerSelection, selection)
+    if (youWin) {
+        console.log(selection, computerSelection, 'win');
+    } else if (computerWin) {
+        console.log(selection, computerSelection, 'lose')
+    }
 }
 
-/*
+//function roundResults
+
+function theWinner(selection, oppositionSelection) {
+    return selection.beats === oppositionSelection.name
+}
+
+function randomSelection(){
+    const randomChoice = Math.floor(Math.random() * SELECTED.length)
+    return SELECTED[randomChoice]
+}
+
+// Text for using an alert 
+// const computerTurn = computerChoice()
+// let newLine = '\r\n'
+// function computerChoice(){
+//     return choices[Math.floor(Math.random() * choices.length)]
+// }
+
+
+
+
+
+
+
+
+/* OLD TEXT-BASED with LOOP
 function chooseRock(){
     let messageRock = ('Player shoots rock!');
 
