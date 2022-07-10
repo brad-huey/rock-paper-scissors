@@ -31,33 +31,29 @@ selectionButtons.forEach(selectedButton => {
         makeSelection(selection)
     })
 })
-// in the days before datasets, developers would set all kinds of attributes 
-// on html elements to add extra information to the element. 
-// But it was so random and it was hard to maintain, so datasets were introduced. 
-// Basically, if you want to add a custom attribute that doesn't exist, 
-// you write data- followed by whatever you want to call it. 
-// Then in js you can access it with htmlElement.dataset.nameYouGaveIt.
 
 function makeSelection(selection) {
     const computerSelection = randomSelection();
     const youWin = theWinner(selection, computerSelection);
-    const computerWin = theWinner(computerSelection, selection);
+    const computerWin = theWinner(computerSelection, selection)
 
     addSelectionResult(computerSelection, computerWin);
     addSelectionResult(selection, youWin);
 
     if (youWin) {
         incrementScore(playerScoreSpan);
+        document.getElementById("winner-text").style.color = 'green'
         document.getElementById("winner-text").innerText = playerWins;
 
     } else if (computerWin) {
         incrementScore(computerScoreSpan);
+        document.getElementById("winner-text").style.color = 'red'
         document.getElementById("winner-text").innerText = computerWins;
 
     } else {
+        document.getElementById("winner-text").style.color = 'black'
         document.getElementById("winner-text").innerText = noWin;
     }
-
 }
 
 function incrementScore(scoreSpan) {
@@ -85,12 +81,6 @@ function randomSelection(){
     return SELECTED[randomChoice]
 }
 
-// Text for using an alert 
-// const computerTurn = computerChoice()
-// let newLine = '\r\n'
-// function computerChoice(){
-//     return choices[Math.floor(Math.random() * choices.length)]
-// }
 
 
 
