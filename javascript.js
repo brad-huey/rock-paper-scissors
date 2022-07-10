@@ -1,4 +1,11 @@
-const selectionButtons = document.querySelectorAll('[data-selection')
+const selectionButtons = document.querySelectorAll('[data-selection');
+const finalColumn = document.querySelector('[data-final-column]')
+const computerScoreSpan = document.querySelector('[data-computer-score]')
+const playerScoreSpan = document.querySelector('[data-you-score]')
+const winnerSpan = document.querySelector('[data-winner]')
+const playerWins = 'You win the round!'
+const computerWins = 'You lost this round!'
+const noWin = 'DRAW!'
 const SELECTED = [
     {
         name: 'rock',
@@ -31,18 +38,43 @@ selectionButtons.forEach(selectedButton => {
 // you write data- followed by whatever you want to call it. 
 // Then in js you can access it with htmlElement.dataset.nameYouGaveIt.
 
-function makeSelection(selection){
-    const computerSelection = randomSelection()
-    const youWin = theWinner(selection, computerSelection)
-    const computerWin = theWinner(computerSelection, selection)
+function makeSelection(selection) {
+    const computerSelection = randomSelection();
+    const youWin = theWinner(selection, computerSelection);
+    const computerWin = theWinner(computerSelection, selection);
+
+    addSelectionResult(computerSelection, computerWin);
+    addSelectionResult(selection, youWin);
+
     if (youWin) {
-        console.log(selection, computerSelection, 'win');
+        incrementScore(playerScoreSpan);
+        document.getElementById("winner-text").innerText = playerWins;
+
     } else if (computerWin) {
-        console.log(selection, computerSelection, 'lose')
+        incrementScore(computerScoreSpan);
+        document.getElementById("winner-text").innerText = computerWins;
+
+    } else {
+        document.getElementById("winner-text").innerText = noWin;
     }
+
 }
 
-//function roundResults
+function incrementScore(scoreSpan) {
+    scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1
+}
+
+function addSelectionResult(selection) {
+     const div = document.createElement('div')
+     div.innerText = selection.text
+     div.classList.add('result-selection')
+ }
+
+ function displayWinnerText(youWin, computerWin) {
+    const div = document.createElement('div')
+    div.innerText = selection.text
+    div.classList.add('result-selection')
+}
 
 function theWinner(selection, oppositionSelection) {
     return selection.beats === oppositionSelection.name
